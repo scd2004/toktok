@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myway.tok.mybatis.MyBatisDao">
+	<select id="findAllStudent" resultType="com.myway.tok.model.Student">
+		select * from student;
+	</select>
+	
+	<select id="findStudent" resultType="com.myway.tok.model.Student">
+		select * from student where seq = #{seq};
+	</select>
+	
+	<update id="updateStudent" parameterType="com.myway.tok.model.Student">
+		update student set id=#{id}, name=#{name}, age=#{age} where seq=#{seq}
+	</update>
+	
+	<delete id="deleteStudent">
+		delete from student where seq = #{seq};
+	</delete>
+	
+	<select id="dynamicStudent" resultType="com.myway.tok.model.Student" parameterType="string">
+		select * from student
+		<if test="value != null and value != ''">
+			where id = #{value}
+		</if>
+		;
+	</select>
+	
+</mapper>  
+  
